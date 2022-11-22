@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import NavBar from './component/navbar';
 import News from './component/news';
-import LoadingBar from 'react-top-loading-bar'
+import SearchPage from './component/searchPage';
+
+import LoadingBar from 'react-top-loading-bar';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -58,6 +61,7 @@ this.setState({
         progress={this.state.progress}
        
       />
+      
           <Routes>
             <Route exact path="/" element={<News setProgress={this.setProgress}  key="general" country="in" pageSize="16" category="general" mode={this.state.mode} />}></Route>
             <Route exact path="/business" element={<News setProgress={this.setProgress} key="business" country="in" pageSize="16" category="business" mode={this.state.mode} />}></Route>
@@ -66,6 +70,7 @@ this.setState({
             <Route exact path="/science" element={<News setProgress={this.setProgress}  key="science" country="in" pageSize="16" category="science" mode={this.state.mode} />}></Route>
             <Route exact path="/sports" element={<News setProgress={this.setProgress} key="sports" country="in" pageSize="16" category="sports" mode={this.state.mode} />}></Route>
             <Route exact path="/technology" element={<News setProgress={this.setProgress}  key="technology" country="in" pageSize="16" category="technology" mode={this.state.mode} />}></Route>
+            <Route exact path="/search" element={<SearchPage setProgress={this.setProgress}  key="technology" country="in" pageSize="16" category="technology" mode={this.state.mode} />}></Route>
           </Routes>
         </Router>
 

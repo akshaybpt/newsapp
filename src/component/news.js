@@ -84,7 +84,7 @@ export class news extends Component {
             {<h4 className="mt-2"> Top {this.props.category.toLowerCase().split(" ").map(el => el.charAt(0).toUpperCase() + el.slice(1)).join(" ")} Headlines  </h4>}
             {
               !this.state.loading && this.state.articles.map((element) => {
-                console.log("hello this is news item inside the map");
+                //  console.log("hello this is news item inside the map");
                 return <div className=" col-12 col-md-6 col-lg-3 mt-5" key={element.url}>
                   <NewsItem tittle={element.title ? element.title.slice(0, 45) : "No tittle"}
                     description={element.description ? element.description.slice(0, 88) : ""}
