@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Link, useLocation
+  Link, useLocation,useNavigate
 } from "react-router-dom";
 import logo from '../file.png'
 
@@ -8,6 +8,11 @@ import logo from '../file.png'
 
 
 const NavBar = (props) => {
+  let navigation = useNavigate();
+  const handelLogout = () => {
+      localStorage.removeItem('token')//remove the token from the storage so the user cant login again
+      navigation('/login');
+  }
   const location = useLocation(); // to set the active in navbar ONLY BE USED IN THE FUNCTION COMPONENET
   return (
     <div>
@@ -47,8 +52,16 @@ const NavBar = (props) => {
                     <li className="nav-item">
                       <Link className={`nav-link ${location.pathname === '/search' ? 'active' : ''}`} to="/search"><i className="bi bi-search "></i></Link>
                     </li>
+                    <li className="nav-item">
+                     { localStorage.getItem('token')? <Link className={`nav-link ${location.pathname === '/favnews' ? 'active' : ''}`} to="/favnews">Favrouit news</Link>: " "}
+                    </li>
                   </ul>
-
+                  <div>
+                                {!localStorage.getItem('token')?<form className='d-flex '>
+                                    <Link className={`btn mx-2 btn-${props.mode==='dark'? 'secondary': 'primary'}`} to="/login">Login </Link>
+                                    <Link className={`btn mx-2 btn-${props.mode==='dark'? 'secondary': 'primary'}`} to="/signup">Signup </Link>
+                                </form>:<button className={`btn  mx-2 btn-${props.mode==='dark'? 'secondary': 'primary'}`} onClick={handelLogout} > Logout </button>}
+                            </div>
                   <div className={`form-check d-flex form-switch mx-2 text-${props.mode === 'light' ? 'dark' : 'light'}`}>
                     <input className="form-check-input mx-2" onClick={props.togglemode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                     <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{props.color} </label>

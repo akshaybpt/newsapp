@@ -10,9 +10,10 @@ const FavrioutNews = (props) => {
     const {getNews,news}= context;
 
     useEffect(() => {
-       
+         // eslint-disable-next-line
+         
             getNews();
-            // eslint-disable-next-line
+          
         
     }, [])
 

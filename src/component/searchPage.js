@@ -28,8 +28,10 @@ export class SearchPage extends Component {
       page: 1,
       search: " "
     }
+    this.props.setProgress(100);
     document.title = `News App - ${this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)}`;
   }
+  
    handleClick = async(e)=>{
     e.preventDefault();
    // console.log("submit is clicked");

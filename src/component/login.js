@@ -1,47 +1,73 @@
-import React, { Component } from 'react'
-import './login.css';
-export class Login extends Component {
-  render() {
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
+
+const Login = (props) => {
+  let {mode}=props
+    let navigate = useNavigate();
+    
+    
+    const [credentials, setCredentials] = useState({ email: "", password: "" })
+   
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const response = await fetch("http://localhost:7000/api/auth/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: credentials.email, password: credentials.password })
+        });
+         const json= await response.json()
+       
+        if (json.sucess) {
+            // Save the auth token and redirect
+       
+            localStorage.setItem("token", json.authToken);  // store the authtoken locally
+           
+        // props.showAlert("आपका स्वागत है","success");
+           
+            navigate("/"); // chnages page to the ./ i.e home page
+
+        }
+        else {
+
+           
+           // props.showAlert("अवैध प्रत्यय पत्र","danger");
+           // props.showAlert("error: Invalid credentials", "danger");
+        }
+    }
+
+    const onChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value })
+    }
+
     return (
-      <div>
-        <div className="container">
-          <div className="form-box">
-            <div className="header-form">
-              <h4 className="text-primary text-center"><i className="fa fa-user-circle" style={{ fontSize: "110px" }}></i></h4>
-              <div className="image">
-              </div>
+        <div>
+            <div className="container">
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Email address</label>
+                        <input type="email" className="form-control" value={credentials.email} onChange={onChange} id="email" name="email" aria-describedby="emailHelp" style={{
+                  backgroundColor: mode === 'light' ? 'white' : '#3b4044',
+                  color: mode === 'light' ? 'black' : 'white'}}  />
+                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input type="password" className="form-control" value={credentials.password} onChange={onChange} name="password" id="password" style={{
+                  backgroundColor: mode === 'light' ? 'white' : '#3b4044',
+                  color: mode === 'light' ? 'black' : 'white'
+                }}  />
+                    </div>
+
+                    <button type="submit" className={`btn btn-${mode==='dark'? 'secondary': 'primary'}`}>Submit</button>
+                </form>
             </div>
-            <div className="body-form">
-              <form>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text"><i class="fa fa-user"></i></span>
-                  </div>
-                  <input type="text" className="form-control" placeholder="Username" />
-                </div>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text"><i class="fa fa-lock"></i></span>
-                  </div>
-                  <input type="text" className="form-control" placeholder="Password" />
-                </div>
-                <button type="button" className="btn btn-secondary btn-block">LOGIN</button>
-                <div className="message">
-                  <div><input type="checkbox" /> Remember ME</div>
-                  <div><a href="#">Forgot your password</a></div>
-                </div>
-              </form>
-              <div className="social">
-                <a href="#"><i className="fab fa-facebook"></i></a>
-                <a href="#"><i className="fab fa-twitter-square"></i></a>
-                <a href="#"><i className="fab fa-google"></i></a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     )
-  }
 }
 
 export default Login

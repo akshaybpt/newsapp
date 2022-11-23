@@ -9,7 +9,7 @@ export class news extends Component {
     country: 'in',
     pageSize: 10,
     category: 'general',
-    mode: 'dark'
+ 
   }
   propTypes = {
     country: PropTypes.string,
@@ -93,6 +93,7 @@ export class news extends Component {
                     author={element.author}
                     publish={element.publishedAt}
                     mode={this.props.mode}
+                    showAlert={this.props.showAlert}
                     source={element.source.name}
                   />
                 </div>
