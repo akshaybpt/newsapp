@@ -33,10 +33,10 @@ const News = (props) => {
     // eslint-disable-next-line
   }, [])
 
-  
+
   const handelNextClick = async () => {
     let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=3fff305f05ea432c8d794c58f5a5b920&page=${page + 1}&pageSize=${pageSize}&category=${category}`;
-    setLoading(true)  
+    setLoading(true)
     let data = await fetch(url);
     let parsedData = await data.json()
     console.log(parsedData);
@@ -44,14 +44,14 @@ const News = (props) => {
     setArticles(parsedData.articles)
     setTotalResults(parsedData.totalResults)
     setLoading(false)
-    setPage(page+1)
+    setPage(page + 1)
     setProgress(100);
   }
 
- const  handelPrevClick = async () => {
+  const handelPrevClick = async () => {
 
     let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=3fff305f05ea432c8d794c58f5a5b920&page=${page - 1}&pageSize=${pageSize}&category=${category}`;
-    setLoading(true)  
+    setLoading(true)
     let data = await fetch(url);
     let parsedData = await data.json()
     console.log(parsedData);
@@ -59,7 +59,7 @@ const News = (props) => {
     setArticles(parsedData.articles)
     setTotalResults(parsedData.totalResults)
     setLoading(false)
-    setPage(page-1)
+    setPage(page - 1)
     setProgress(100);
   }
 
@@ -67,17 +67,17 @@ const News = (props) => {
 
   return (
     <>
-    <section>
-      <div className="container">
-        <div className="row">
-          <div className="col">
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+            </div>
+            <h2 className="my-2">News Application</h2>
+            {<h4 className="mt-2"> Top {category.toLowerCase().split(" ").map(el => el.charAt(0).toUpperCase() + el.slice(1)).join(" ")} Headlines  </h4>}
+            {loading && <Spinner />}
           </div>
-          <h2 className="my-2">News Application</h2>
-      {<h4 className="mt-2"> Top {category.toLowerCase().split(" ").map(el => el.charAt(0).toUpperCase() + el.slice(1)).join(" ")} Headlines  </h4>}
-      {loading && <Spinner />}
-          </div>
-      </div>
-      
+        </div>
+
       </section>
       <section>
         <div className="container">
@@ -101,9 +101,8 @@ const News = (props) => {
           <button disabled={page <= 1} type="button" className={`btn btn-${mode === 'light' ? 'secondary' : 'light'}`} onClick={handelPrevClick}> &laquo; Previous </button>
           <button disabled={page + 1 > Math.ceil(totalResults / pageSize)} type="button" className={`btn btn-${mode === 'light' ? 'secondary' : 'light'}`} onClick={handelNextClick}>Next &raquo;</button>
         </div>
-        </section>
+      </section>
     </>
-
 
   )
 }

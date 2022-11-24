@@ -24,7 +24,7 @@ const FavrioutNews = (props) => {
       <div className="row ">
       {news.length === 0 && 'No favrouit  news to display'}
             {news.map((element)=>{
-        return  <div className="col-md-4 my-3" key={element._id} >
+        return  <div className=" col-12 col-md-6 col-lg-3 my-3" key={element._id} >
             <FavNewsItem news={element} showAlert={props.showAlert} mode ={props.mode}/> 
           
             </div>
