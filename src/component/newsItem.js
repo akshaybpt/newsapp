@@ -20,7 +20,7 @@ const NewsItem=(props)=> {
           </div>
        
           <img src={imgUrl ? imgUrl : newsPic} className="card-img-top" alt=" Not Available" />
-          <button type="button" className="btn btn-outline-danger position-absolute" disabled={!localStorage.getItem('token')} onClick={handelClick} style={{right:'0' ,top:'0'}}><i className="bi bi-bag-heart fs-6" ></i></button>
+          <button type="button" className="btn btn-outline-danger position-absolute" data-toggle="tooltip" data-placement="top" title="Click To Save News" disabled={!localStorage.getItem('token')} onClick={handelClick} style={{right:'0' ,top:'0'}}><i className="bi bi-bag-heart fs-6" ></i></button>
           
           <div className={`card-body text-center bg-${mode}`}>
        

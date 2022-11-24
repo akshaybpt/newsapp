@@ -20,7 +20,7 @@ const FavNewsItem = (props) => {
           </div>
        
           <img src={news.imgUrl ? news.imgUrl : newsPic} className="card-img-top" alt=" Not Available" />
-          <button type="button" className="btn btn-outline-danger position-absolute" onClick={handelClick} style={{right:'0' ,top:'0'}}><i className="bi bi-trash3 fs-6" ></i></button>
+          <button type="button" className="btn btn-outline-danger position-absolute" data-toggle="tooltip" data-placement="top" title="Click To Delete News" onClick={handelClick} style={{right:'0' ,top:'0'}}><i className="bi bi-trash3 fs-6" ></i></button>
           
           <div className={`card-body text-center bg-${props.mode}`}>
        
