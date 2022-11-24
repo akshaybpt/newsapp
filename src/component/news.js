@@ -19,7 +19,7 @@ const News = (props) => {
     setProgress(50);
     let data = await fetch(url);
     let parsedData = await data.json()
-
+    console.log(parsedData)
     setProgress(75);
     setArticles(parsedData.articles)
     setTotalResults(parsedData.totalResults)
@@ -97,7 +97,7 @@ const News = (props) => {
             })}
           </div>
         </div>
-        <div className="container my-5 d-flex justify-content-between px-5">
+        <div className=" my-3 d-flex justify-content-between px-5">
           <button disabled={page <= 1} type="button" className={`btn btn-${mode === 'light' ? 'secondary' : 'light'}`} onClick={handelPrevClick}> &laquo; Previous </button>
           <button disabled={page + 1 > Math.ceil(totalResults / pageSize)} type="button" className={`btn btn-${mode === 'light' ? 'secondary' : 'light'}`} onClick={handelNextClick}>Next &raquo;</button>
         </div>

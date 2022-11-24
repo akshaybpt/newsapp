@@ -44,7 +44,7 @@ export class SearchPage extends Component {
   }
   updateNews = async () => {
     this.props.setProgress(0);
-    let url = ` https://newsapi.org/v2/everything?q=${this.state.search}&apiKey=466e5c5c122748deba1e3b4795759a52`;
+    let url = ` https://newsapi.org/v2/everything?q=${this.state.search}&apiKey=3fff305f05ea432c8d794c58f5a5b920`;
     this.setState({ loading: true })
     this.props.setProgress(50);
     let data = await fetch(url);

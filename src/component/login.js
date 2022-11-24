@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-
 const Login = (props) => {
   let {mode}=props
     let navigate = useNavigate();
@@ -27,7 +26,7 @@ const Login = (props) => {
        
             localStorage.setItem("token", json.authToken);  // store the authtoken locally
            
-        // props.showAlert("आपका स्वागत है","success");
+              props.showAlert("आपका स्वागत है","success");
            
             navigate("/"); // chnages page to the ./ i.e home page
 
