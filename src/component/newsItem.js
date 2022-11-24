@@ -8,6 +8,7 @@ const NewsItem=(props)=> {
    const  handelClick=()=>{
       createNews(tittle,description,imgUrl,newsUrl,author,source);
       showAlert("Added to favorite", "success");
+   
     }
   
     let { tittle, description, imgUrl, newsUrl, author, publish, mode ,source, showAlert } = props;
